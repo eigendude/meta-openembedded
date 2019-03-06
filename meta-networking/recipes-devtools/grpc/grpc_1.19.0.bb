@@ -11,8 +11,8 @@ DEPENDS_append_class-target = " gtest grpc-native "
 DEPENDS_append_class-nativesdk = " grpc-native "
 
 S = "${WORKDIR}/git"
-SRCREV = "d8020cb6daa87f1a3bb3b0c299bc081c4a3de1e8"
-BRANCH = "v1.14.x"
+SRCREV = "da76faf2b882ba1e07bd52379bfb8eba8354155c"
+BRANCH = "v1.19.x"
 SRC_URI = "git://github.com/grpc/grpc.git;protocol=https;branch=${BRANCH} \
            file://0001-CMakeLists.txt-Fix-libraries-installation-for-Linux.patch \
            "
