@@ -2,6 +2,11 @@
 
 PATH=/sbin:/bin:/usr/bin:/usr/sbin
 
+# Set the real-time clock device used by hwclock.
+# The RTC onboard the BeagleBone Black is not battery-backed. This assumes
+# that an external battery-backed RTC is connected.
+RTC_DEVICE=/dev/rtc1
+
 test -x /usr/sbin/ntpdate || exit 0
 
 if test -f /etc/default/ntpdate ; then
@@ -42,7 +47,7 @@ fi
 
 if /usr/sbin/ntpdate -s $OPTS $NTPSERVERS 2>/dev/null; then
 	if [ "$UPDATE_HWCLOCK" = "yes" ]; then
-		hwclock --systohc || :
+		hwclock --systohc --rtc="$RTC_DEVICE" || :
 	fi
 fi
 
