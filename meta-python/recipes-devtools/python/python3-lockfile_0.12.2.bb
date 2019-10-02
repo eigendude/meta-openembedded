@@ -1,3 +1,3 @@
 require python-lockfile.inc
 
-inherit setuptools
+inherit setuptools3
