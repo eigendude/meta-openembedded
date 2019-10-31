@@ -42,7 +42,7 @@ fi
 
 if /usr/sbin/ntpdate -s $OPTS $NTPSERVERS 2>/dev/null; then
 	if [ "$UPDATE_HWCLOCK" = "yes" ]; then
-		hwclock --systohc || :
+		hwclock --systohc --rtc="$HWCLOCK_FILENAME" || :
 	fi
 fi
 
