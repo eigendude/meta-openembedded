@@ -5,3 +5,5 @@ NTPSERVERS=""
 # Set to "yes" to write time to hardware clock on success
 UPDATE_HWCLOCK="no"
 
+# Override the default /dev filename for the hardware clock, if set to update
+HWCLOCK_FILENAME="/dev/rtc"
