@@ -1,6 +1,6 @@
 [Unit]
 Description=Network Time Service
-After=network.target
+After=ntpdate.service
 
 [Service]
 Type=forking
