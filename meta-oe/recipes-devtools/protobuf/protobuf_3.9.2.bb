@@ -10,13 +10,13 @@ LIC_FILES_CHKSUM = "file://LICENSE;md5=37b5762e07f0af8c74ce80a8bda4266b"
 DEPENDS = "zlib"
 DEPENDS_append_class-target = " protobuf-native"
 
-PV .= "+git${SRCPV}"
+SRCREV = "52b2447247f535663ac1c292e088b4b27d2910ef"
 
-SRCREV = "48cb18e5c419ddd23d9badcfe4e9df7bde1979b2"
-
-SRC_URI = "git://github.com/google/protobuf.git;branch=3.6.x \
+SRC_URI = "git://github.com/google/protobuf.git;branch=3.9.x \
            file://run-ptest \
            file://0001-protobuf-fix-configure-error.patch \
+           file://0001-Makefile.am-include-descriptor.cc-when-building-libp.patch \
+           file://0001-examples-Makefile-respect-CXX-LDFLAGS-variables-fix-.patch \
 "
 S = "${WORKDIR}/git"
 
@@ -31,9 +31,6 @@ TEST_SRC_DIR = "examples"
 LANG_SUPPORT = "cpp ${@bb.utils.contains('PACKAGECONFIG', 'python', 'python', '', d)}"
 
 do_compile_ptest() {
-	# Modify makefile to use the cross-compiler
-	sed -e "s|c++|${CXX} \$(LDFLAGS)|g" -i "${S}/${TEST_SRC_DIR}/Makefile"
-
 	mkdir -p "${B}/${TEST_SRC_DIR}"
 
 	# Add the location of the cross-compiled header and library files
