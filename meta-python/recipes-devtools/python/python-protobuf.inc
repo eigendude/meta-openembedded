@@ -7,6 +7,10 @@ LIC_FILES_CHKSUM = "file://PKG-INFO;beginline=8;endline=8;md5=19e8f490f9526b1de8
 
 inherit pypi
 
+SRC_URI += " \
+    file://0001-setup.cfg-Change-location-of-statically-linked-libra.patch \
+"
+
 SRC_URI[md5sum] = "d634666c898148e4565ac62f3ba4a2ca"
 SRC_URI[sha256sum] = "843f498e98ad1469ad54ecb4a7ccf48605a1c5d2bd26ae799c7a2cddab4a37ec"
 
