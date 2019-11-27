@@ -1,0 +1,28 @@
+From d99244cf587c360f2ec2a5e8da90a0fa5ce510ad Mon Sep 17 00:00:00 2001
+From: Garrett Brown <garrett.brown@aclima.io>
+Date: Tue, 26 Nov 2019 18:18:43 -0800
+Subject: [PATCH] setup.cfg: Change location of statically-linked libraries
+
+TODO: Pass library directory from BitBake.
+---
+ setup.py | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/setup.py b/setup.py
+index 9aabbf7..9152264 100755
+--- a/setup.py
++++ b/setup.py
+@@ -174,8 +174,8 @@ if __name__ == '__main__':
+     extra_objects = None
+     if compile_static_ext:
+       libraries = None
+-      extra_objects = ['../src/.libs/libprotobuf.a',
+-                       '../src/.libs/libprotobuf-lite.a']
++      extra_objects = ['../recipe-sysroot/usr/lib/libprotobuf.a',
++                       '../recipe-sysroot/usr/lib/libprotobuf-lite.a']
+     test_conformance.target = 'test_python_cpp'
+ 
+     extra_compile_args = []
+-- 
+2.20.1
+
