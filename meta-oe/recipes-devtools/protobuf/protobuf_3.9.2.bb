@@ -84,6 +84,8 @@ MIPS_INSTRUCTION_SET = "mips"
 
 BBCLASSEXTEND = "native nativesdk"
 
+CXXFLAGS_append_class-target = " -fPIC"
+
 LDFLAGS_append_arm = " -latomic"
 LDFLAGS_append_mips = " -latomic"
 LDFLAGS_append_powerpc = " -latomic"
