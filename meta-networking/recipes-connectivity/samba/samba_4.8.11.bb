@@ -224,7 +224,7 @@ PACKAGESPLITFUNCS_prepend = "samba_populate_packages "
 PACKAGES_DYNAMIC = "samba-auth-.* samba-pdb-.*"
 
 RDEPENDS_${PN} += "${PN}-base ${PN}-python ${PN}-dsdb-modules"
-RDEPENDS_${PN}-python += "pytalloc python-tdb"
+RDEPENDS_${PN}-python += "pytalloc python3-tdb"
 
 FILES_${PN}-base = "${sbindir}/nmbd \
                     ${sbindir}/smbd \
