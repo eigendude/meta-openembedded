@@ -46,4 +46,4 @@ FILES_pytalloc = "${libdir}/python${PYTHON_BASEVERSION}/site-packages/* \
                   ${libdir}/libpytalloc-util.so.2.1.1 \
                  "
 FILES_pytalloc-dev = "${libdir}/libpytalloc-util.so"
-RDEPENDS_pytalloc = "python"
+RDEPENDS_pytalloc = "python3"
