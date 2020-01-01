@@ -4,7 +4,7 @@ SECTION = "libs"
 LICENSE = "LGPLv3+"
 
 DEPENDS += "libtalloc libtirpc"
-RDEPENDS_python-tevent = "python"
+RDEPENDS_python3-tevent = "python3"
 
 SRC_URI = "https://samba.org/ftp/tevent/tevent-${PV}.tar.gz \
            file://options-0.9.36.patch \
@@ -39,8 +39,8 @@ EXTRA_OECONF += "--disable-rpath \
                  --without-gettext \
                 "
 
-PACKAGES += "python-tevent"
+PACKAGES += "python3-tevent"
 
-RPROVIDES_${PN}-dbg += "python-tevent-dbg"
+RPROVIDES_${PN}-dbg += "python3-tevent-dbg"
 
-FILES_python-tevent = "${libdir}/python${PYTHON_BASEVERSION}/site-packages/*"
+FILES_python3-tevent = "${libdir}/python${PYTHON_BASEVERSION}/site-packages/*"
