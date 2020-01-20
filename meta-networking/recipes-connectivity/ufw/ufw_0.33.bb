@@ -24,8 +24,8 @@ inherit setuptools distro_features_check
 
 RDEPENDS_${PN} = " \
                   iptables \
-                  python \
-                  python-modules \
+                  python3 \
+                  python3-modules \
                  "
 
 RRECOMMENDS_${PN} = " \
