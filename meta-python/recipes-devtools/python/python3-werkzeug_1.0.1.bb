@@ -7,23 +7,17 @@ HTTP utilities to handle entity tags, cache control headers, HTTP dates, \
 cookie handling, file uploads, a powerful URL routing system and a bunch \
 of community contributed addon modules."
 HOMEPAGE = "http://werkzeug.pocoo.org/"
-LICENSE = "BSD"
-LIC_FILES_CHKSUM = "file://LICENSE;md5=ed9a0b7c0254616d72dadb98b293ef1b"
-
-SRC_URI[md5sum] = "6d20b5be2d245be4ac7706cc390d130c"
-SRC_URI[sha256sum] = "c3fd7a7d41976d9f44db327260e263132466836cef6f91512889ed60ad26557c"
+LICENSE = "BSD-3-Clause"
+LIC_FILES_CHKSUM = "file://LICENSE.rst;md5=5dc88300786f1c214c1e9827a5229462"
 
 PYPI_PACKAGE = "Werkzeug"
 
-CLEANBROKEN = "1"
+SRC_URI[md5sum] = "5d499cfdd30de5d9c946994783772efd"
+SRC_URI[sha256sum] = "6c80b1e5ad3665290ea39320b91e1be1e0d5f60652b964a3070216de83d2e47c"
 
-PACKAGES =+ "${PN}-tests"
-FILES_${PN}-tests+= " \
-    ${PYTHON_SITEPACKAGES_DIR}/werkzeug/test* \
-    ${PYTHON_SITEPACKAGES_DIR}/werkzeug/__pycache__/test* \
-    ${PYTHON_SITEPACKAGES_DIR}/werkzeug/contrib/test* \
-    ${PYTHON_SITEPACKAGES_DIR}/werkzeug/contrib/__pycache__/test* \
-"
+inherit pypi setuptools3
+
+CLEANBROKEN = "1"
 
 RDEPENDS_${PN} += " \
     ${PYTHON_PN}-datetime \
@@ -32,16 +26,14 @@ RDEPENDS_${PN} += " \
     ${PYTHON_PN}-html \
     ${PYTHON_PN}-io \
     ${PYTHON_PN}-json \
+    ${PYTHON_PN}-logging \
     ${PYTHON_PN}-netclient \
     ${PYTHON_PN}-netserver \
     ${PYTHON_PN}-numbers \
     ${PYTHON_PN}-pkgutil \
     ${PYTHON_PN}-pprint \
+    ${PYTHON_PN}-simplejson \
     ${PYTHON_PN}-threading \
     ${PYTHON_PN}-unixadmin \
-"
-
-RDEPENDS_${PN}-tests = " \
-    ${PN} \
-    ${PYTHON_PN}-unittest \
+    ${PYTHON_PN}-misc \
 "
