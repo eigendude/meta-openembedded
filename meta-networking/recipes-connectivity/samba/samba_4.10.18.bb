@@ -53,7 +53,7 @@ RDEPENDS_${PN}_remove = "perl"
 
 DEPENDS += "readline virtual/libiconv zlib popt libtalloc libtdb libtevent libldb libaio libpam libtasn1 jansson"
 
-inherit features_check
+inherit distro_features_check
 REQUIRED_DISTRO_FEATURES = "pam"
 
 DEPENDS_append_libc-musl = " libtirpc"
