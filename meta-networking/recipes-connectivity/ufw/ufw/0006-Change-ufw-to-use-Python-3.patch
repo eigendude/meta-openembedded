@@ -1,0 +1,22 @@
+From cc07a44f717bb7bdd71c07a7ad84caf6d8ed5c8c Mon Sep 17 00:00:00 2001
+From: Garrett Brown <garrett.brown@aclima.io>
+Date: Tue, 2 Apr 2024 14:12:46 -0700
+Subject: [PATCH] Change ufw to use Python 3
+
+---
+ src/ufw | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/src/ufw b/src/ufw
+index c9e80e9..6ae28fa 100755
+--- a/src/ufw
++++ b/src/ufw
+@@ -1,4 +1,4 @@
+-#! /usr/bin/env python
++#! /usr/bin/env python3
+ #
+ # ufw: front-end for Linux firewalling (cli)
+ #
+-- 
+2.34.1
+
