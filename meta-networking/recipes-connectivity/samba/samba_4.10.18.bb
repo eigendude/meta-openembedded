@@ -26,6 +26,10 @@ SRC_URI = "${SAMBA_MIRROR}/stable/samba-${PV}.tar.gz \
            file://0001-waf-add-support-of-cross_compile.patch \
            file://0001-lib-replace-wscript-Avoid-generating-nested-main-fun.patch \
            file://0002-util_sec.c-Move-__thread-variable-to-global-scope.patch \
+           file://0001-Add-options-to-configure-the-use-of-libbsd.patch \
+           file://0001-nsswitch-nsstest.c-Avoid-nss-function-conflicts-with.patch \
+           file://CVE-2020-14318.patch \
+           file://CVE-2020-14383.patch \
            "
 SRC_URI_append_libc-musl = " \
            file://samba-pam.patch \
@@ -34,16 +38,20 @@ SRC_URI_append_libc-musl = " \
            file://0001-samba-fix-musl-lib-without-innetgr.patch \
           "
 
-SRC_URI[md5sum] = "dde27447f39d124efe18f719ccf956dd"
-SRC_URI[sha256sum] = "700c734b51610e2feaa0d6744f9bec0c0d8917bca8cc78d5b63a4591f32866a5"
+SRC_URI[md5sum] = "f006a3d1876113e4a049015969d20fe6"
+SRC_URI[sha256sum] = "7dcfc2aaaac565b959068788e6a43fc79ce2a03e7d523f5843f7a9fddffc7c2c"
 
 UPSTREAM_CHECK_REGEX = "samba\-(?P<pver>4\.10(\.\d+)+).tar.gz"
 
 inherit systemd waf-samba cpan-base perlnative update-rc.d
+
+# CVE-2011-2411 is valnerble only on HP NonStop Servers.
+CVE_CHECK_WHITELIST += "CVE-2011-2411" 
+
 # remove default added RDEPENDS on perl
 RDEPENDS_${PN}_remove = "perl"
 
-DEPENDS += "readline virtual/libiconv zlib popt libtalloc libtdb libtevent libldb libbsd libaio libpam libtasn1 jansson"
+DEPENDS += "readline virtual/libiconv zlib popt libtalloc libtdb libtevent libldb libaio libpam libtasn1 jansson"
 
 inherit distro_features_check
 REQUIRED_DISTRO_FEATURES = "pam"
@@ -91,6 +99,7 @@ PACKAGECONFIG[archive] = "--with-libarchive, --without-libarchive, libarchive"
 PACKAGECONFIG[libunwind] = ", , libunwind"
 PACKAGECONFIG[gpgme] = ",--without-gpgme,,"
 PACKAGECONFIG[lmdb] = ",--without-ldb-lmdb,lmdb,"
+PACKAGECONFIG[libbsd] = "--with-libbsd, --without-libbsd, libbsd"
 
 # Building the AD (Active Directory) DC (Domain Controller) requires GnuTLS,
 # And ad-dc doesn't work with mitkrb5 for versions prior to 4.7.0 according to:
@@ -194,11 +203,11 @@ do_install_append() {
     
     for f in samba-gpupdate samba_upgradedns samba_spnupdate samba_kcc samba_dnsupdate; do
         if [ -f "${D}${sbindir}/$f" ]; then
-            sed -i -e 's,${PYTHON},/usr/bin/env python3/,g' ${D}${sbindir}/$f
+            sed -i -e 's,${PYTHON},/usr/bin/env python3,g' ${D}${sbindir}/$f
         fi
     done
     if [ -f "${D}${bindir}/samba-tool" ]; then
-        sed -i -e 's,${PYTHON},/usr/bin/env python3/,g' ${D}${bindir}/samba-tool
+        sed -i -e 's,${PYTHON},/usr/bin/env python3,g' ${D}${bindir}/samba-tool
     fi
     
 }
