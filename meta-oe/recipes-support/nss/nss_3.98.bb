@@ -31,7 +31,6 @@ SRC_URI = "http://ftp.mozilla.org/pub/security/nss/releases/${VERSION_DIR}/src/$
            file://blank-key4.db \
            file://system-pkcs11.txt \
            file://nss-fix-nsinstall-build.patch \
-           file://0001-freebl-add-a-configure-option-to-disable-ARM-HW-cryp.patch \
            "
 SRC_URI[sha256sum] = "f549cc33d35c0601674bfacf7c6ad683c187595eb4125b423238d3e9aa4209ce"
 
@@ -95,8 +94,6 @@ do_compile() {
     export NSS_USE_SYSTEM_SQLITE=1
     export NSS_ENABLE_ECC=1
     export NSS_ENABLE_WERROR=0
-
-    ${@bb.utils.contains("TUNE_FEATURES", "crypto", "export NSS_USE_ARM_HW_CRYPTO=1", "", d)}
 
     export OS_RELEASE=3.4
     export OS_TARGET=Linux
