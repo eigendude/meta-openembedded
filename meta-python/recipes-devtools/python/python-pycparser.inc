@@ -12,6 +12,4 @@ BBCLASSEXTEND = "native nativesdk"
 RDEPENDS_${PN}_class-target += "\
     ${PYTHON_PN}-ply \
     ${PYTHON_PN}-pprint \
-    cpp \
-    cpp-symlinks \
     "
