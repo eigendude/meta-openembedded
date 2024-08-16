@@ -31,7 +31,7 @@ SSTATE_SCAN_FILES += "*.cmake"
 PACKAGECONFIG ??= ""
 
 # suitesparse* recipes will be in meta-ros layer
-PACKAGECONFIG[suitesparse] = "-DSUITESPARSE=ON,-DSUITESPARSE=OFF,suitesparse-config suitesparse-amd suitesparse-camd suitesparse-colamd suitesparse-ccolamd suitesparse-cholmod suitesparse-metis suitesparse-spqr"
+PACKAGECONFIG[suitesparse] = "-DSUITESPARSE=ON,-DSUITESPARSE=OFF,suitesparse-config suitesparse-amd suitesparse-camd suitesparse-colamd suitesparse-ccolamd suitesparse-cholmod suitesparse-spqr"
 PACKAGECONFIG[cxsparse] = "-DCXSPARSE=ON,-DCXSPARSE=OFF,suitesparse-cxsparse"
 PACKAGECONFIG[lapack] = "-DLAPACK=ON,-DLAPACK=OFF,lapack"
 
@@ -39,3 +39,6 @@ PACKAGECONFIG[lapack] = "-DLAPACK=ON,-DLAPACK=OFF,lapack"
 RDEPENDS:${PN}-dev = ""
 RRECOMMENDS:${PN}-dev = "${PN}-staticdev"
 RRECOMMENDS:${PN}-dbg = "${PN}-dev (= ${EXTENDPKGV})"
+
+# Disable Metis due to build error
+EXTRA_OECMAKE += "-DEIGENMETIS=OFF"
