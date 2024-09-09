@@ -30,6 +30,7 @@ LDFLAGS:append:riscv32 = " -latomic"
 
 FILES:${PN} += "${datadir}/gjs-1.0/lsan"
 
+PACKAGES =+ "${PN}-valgrind"
 FILES:${PN}-valgrind = "${datadir}/gjs-1.0/valgrind"
 RDEPENDS:${PN}-valgrind += "valgrind"
 
